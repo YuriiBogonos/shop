@@ -9,7 +9,7 @@ import { LoginPage } from "../components/LoginPage/LoginPage";
 import { Home } from "../components/Home/Home";
 import ProductsProvider from "../providers/productsContext";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <LoginPage />,
@@ -43,7 +43,6 @@ const Navigator = () => {
   return (
     <ProductsProvider>
       <RouterProvider router={router} />
-      
     </ProductsProvider>
   );
 };
