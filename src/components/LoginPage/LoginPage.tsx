@@ -15,13 +15,6 @@ interface Props {
   isLogin?: boolean;
 }
 
-const inputStyles = {
-  backgroundColor: "#F6F6F6",
-  padding: "0 10px",
-  color: "#000000",
-  border: "none",
-};
-
 export const LoginPage: FC<Props> = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,11 +39,6 @@ export const LoginPage: FC<Props> = () => {
       notify("Password is required, minimum 6 characters");
       return false;
     }
-
-    // if (!isLoginForm && userName === "") {
-    //   notify("User Name is required");
-    //   return false;
-    // }
 
     return true;
   }, [email, password]);

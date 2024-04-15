@@ -1,10 +1,7 @@
 import { useContext } from "react";
 import { ProductsContext } from "../../providers/productsContext";
 import { ProductCard } from "../ProductCard/ProductCard";
-// import { Pagination } from "react-bootstrap";
 import { PaginationCustom } from "../PaginationCustom/PaginationCustom";
-import { set } from "firebase/database";
-import "./styles.css";
 const itemsPerPageArray: number[] = [5, 10, 15];
 
 export const Home = () => {
@@ -75,17 +72,15 @@ export const Home = () => {
             Items per page: {itemsPerPage}
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {itemsPerPageArray
-              .filter((item) => item < totalItems)
-              .map((item) => (
-                <button
-                  key={item}
-                  className="dropdown-item"
-                  onClick={() => setItemsPerPage(item)}
-                >
-                  {item}
-                </button>
-              ))}
+            {itemsPerPageArray.map((item) => (
+              <button
+                key={item}
+                className="dropdown-item"
+                onClick={() => setItemsPerPage(item)}
+              >
+                {item}
+              </button>
+            ))}
           </div>
         </div>
         {/* )} */}
@@ -98,12 +93,16 @@ export const Home = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         ></input>
       </div>
-      <div className="row">
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
+      {products.length > 0 ? (
+        <div className="row">
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </div>
+      ) : (
+        <h1>No products found</h1>
+      )}
       <div className="d-flex justify-content-center">
         {totalItems > itemsPerPage && products.length >= itemsPerPage && (
           <PaginationCustom

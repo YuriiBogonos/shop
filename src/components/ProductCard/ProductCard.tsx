@@ -1,6 +1,7 @@
 import { FC } from "react";
 
 import "./styles.css";
+import { Button } from "react-bootstrap";
 
 interface Props {
   product: {
@@ -22,8 +23,20 @@ export const ProductCard: FC<Props> = ({ product }) => {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{description}</p>
-          <p className="card-text">Price: ${price}</p>
-          <p className="card-text">Discount: {discountPercentage}%</p>
+        </div>
+        <div className="card-footer">
+          <div className="d-flex justify-content-between">
+            <p className="card-text">
+              <span className="text-muted">Price:</span> ${price}
+            </p>
+            <p className="card-text">
+              <span className="text-muted">Discount:</span> {discountPercentage}
+              %
+            </p>
+          </div>
+          <Button variant="" className="btn btn-primary btn-sm">
+            Add to Cart
+          </Button>
         </div>
       </div>
     </div>
